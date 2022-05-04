@@ -19,7 +19,7 @@ class Hero(pygame.sprite.Sprite):
         #set other attributes
         self.name = name
         self.speed = 3
-        self.health = 3
+        self.health = 5
 
     #methods to make moving our hero easier
     def move_up(self):
@@ -39,3 +39,7 @@ class Hero(pygame.sprite.Sprite):
         else:
             print("successful attack")
         return True
+    def getHeroPosX(self):
+      return self.hero.rect.x
+    def getHeroPosY(self):
+      return self.hero.rect.y

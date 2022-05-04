@@ -8,20 +8,20 @@
 Replace anything surrounded by the `< >` symbols._
 
 ## SUMMARY:
- < Provide a short description of your program's functionality. No more than a couple sentences. >
+ A simple game where the user moves the hero using the arrow keys and collides with enemy sprites. a fight ensues in which the hero rolls the dice to see if it will win the fight and kill the enemy.
 #### Unique Feature
- < Describe the unique feature you added >
+ Added two functionalities. 1) made it so that enemies do not move completely out of bounds. 2) added the dodge ability to enemies. They have a chance to dodge a successful attack from the hero, meaning that they will not die from that attack. This method is called in line 58 in controller.py
 
 ## GRACE DAYS
-Grace days used for this assignment: < # >
+Grace days used for this assignment: 1
 
-Grace days remaining: < # >/5
+Grace days remaining: 1/5
 
 ## KNOWN BUGS AND INCOMPLETE PARTS:
- < What parts of the project you were not able to complete >
+None
 
 ## REFERENCES:
- < List any outside resources used >
+None
 
 ## MISCELLANEOUS COMMENTS:
- < Anything you would like the grader to know >
+None

@@ -20,8 +20,8 @@ class Controller:
         self.enemies = pygame.sprite.Group()
         num_enemies = 3
         for i in range(num_enemies):
-            x = random.randrange(100, 400)
-            y = random.randrange(100, 400)
+            x = random.randrange(200, 400)
+            y = random.randrange(200, 400)
             self.enemies.add(enemy.Enemy("Boogie", x, y, 'assets/enemy.png'))
         self.hero = hero.Hero("Conan", 50, 80, "assets/hero.png")
         self.all_sprites = pygame.sprite.Group((self.hero,) + tuple(self.enemies))
@@ -35,6 +35,7 @@ class Controller:
                 self.gameOver()
 
     def gameLoop(self):
+        num_enemies = 3
         while self.state == "GAME":
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -48,27 +49,34 @@ class Controller:
                         self.hero.move_left()
                     elif(event.key == pygame.K_RIGHT):
                         self.hero.move_right()
-
+            
             # check for collisions
             fights = pygame.sprite.spritecollide(self.hero, self.enemies, True)
             if(fights):
                 for e in fights:
                     if(self.hero.fight(e)):
+                      if(not e.dodge()):
                         e.kill()
                         self.background.fill((250, 250, 250))
+                      else:
+                        self.background.fill((250, 0, 0))
+                        self.enemies.add(e)
                     else:
                         self.background.fill((250, 0, 0))
                         self.enemies.add(e)
 
             # redraw the entire screen
             self.enemies.update()
+            
             self.screen.blit(self.background, (0, 0))
             if(self.hero.health == 0):
                 self.state = "GAMEOVER"
+                       
             self.all_sprites.draw(self.screen)
 
             # update the screen
             pygame.display.flip()
+          
 
     def gameOver(self):
         self.hero.kill()
@@ -80,3 +88,6 @@ class Controller:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
+    #def getHeroX(self):
+      #return self.hero.rect.x
+    
